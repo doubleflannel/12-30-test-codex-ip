@@ -20,7 +20,8 @@ Recommended defaults:
 
 1. Pick a tight file set (fewest files that still contain the truth).
 2. Preview what you’re about to send (`--dry-run` + `--files-report` when needed).
-3. Run in browser mode for the usual GPT‑5.2 Pro ChatGPT workflow; use API only when you explicitly want it.
+<<<<<<< HEAD
+3. Run in browser mode for the usual ChatGPT‑5.2 thinking workflow; use API only when you explicitly want it.
 4. If the run detaches/timeouts: reattach to the stored session (don’t re-run).
 
 ## Commands (preferred)
@@ -65,6 +66,7 @@ Recommended defaults:
 
 - Target: keep total input under ~196k tokens.
 - Use `--files-report` (and/or `--dry-run json`) to spot the token hogs before spending.
+<<<<<<< HEAD
 - If you need hidden/advanced knobs: `npx -y @steipete/oracle --help --verbose`.
 
 ## Engines (API vs browser)
