@@ -1,6 +1,8 @@
 .env
 .env.local
+.envrc
 .DS_Store
+.xdg/
 node_modules
 dist
 coverage
