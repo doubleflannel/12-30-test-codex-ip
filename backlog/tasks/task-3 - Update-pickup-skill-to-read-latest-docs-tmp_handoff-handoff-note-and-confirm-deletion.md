@@ -3,11 +3,11 @@ id: task-3
 title: >-
   Update pickup skill to read latest docs/tmp_handoff handoff note and confirm
   deletion
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2025-12-31 20:04'
-updated_date: '2025-12-31 20:34'
+updated_date: '2025-12-31 21:10'
 labels: []
 dependencies: []
 ---
@@ -22,9 +22,9 @@ Add a final step that, after pickup is complete, asks the user to confirm deleti
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `/home/vnkbr/.codex/skills/pickup/SKILL.md` includes a step to read the newest `docs/tmp_handoff/handoff-*.md` by modified time.
-- [ ] #2 The pickup skill adds a final step asking the user to confirm deletion of the handoff note, and specifies `./scripts/trash-win` for deletion.
-- [ ] #3 The pickup skill includes or references an explicit CLI example for selecting the newest handoff file (e.g., `ls -t ... | head -n 1`).
+- [x] #1 `/home/vnkbr/.codex/skills/pickup/SKILL.md` includes a step to read the newest `docs/tmp_handoff/handoff-*.md` by modified time.
+- [x] #2 The pickup skill adds a final step asking the user to confirm deletion of the handoff note, and specifies `./scripts/trash-win` for deletion.
+- [x] #3 The pickup skill includes or references an explicit CLI example for selecting the newest handoff file (e.g., `ls -t ... | head -n 1`).
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -34,3 +34,11 @@ Add a final step that, after pickup is complete, asks the user to confirm deleti
 - Add a final pickup step to ask the user to confirm deleting that handoff note; if confirmed, delete via `./scripts/trash-win` (not `rm`).
 - Keep wording concise and consistent with existing pickup format; verify steps meet acceptance criteria.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Added pickup step to read newest `docs/tmp_handoff/handoff-*.md` with CLI example.
+
+Added final deletion confirmation step with `./scripts/trash-win`.
+<!-- SECTION:NOTES:END -->
