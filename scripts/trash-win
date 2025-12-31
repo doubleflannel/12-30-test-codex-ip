@@ -15,5 +15,11 @@ for target in "$@"; do
   winpath=$(wslpath -w -- "$target")
   winpath_escaped=${winpath//\'/\'\'}
 
-  powershell.exe -NoProfile -Command "Add-Type -AssemblyName Microsoft.VisualBasic; if (Test-Path -LiteralPath '$winpath_escaped') { if ((Get-Item -LiteralPath '$winpath_escaped').PSIsContainer) { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } } else { Write-Error 'Path not found: $winpath_escaped' }"
+  ps_command="\$ErrorActionPreference='Stop'; Add-Type -AssemblyName Microsoft.VisualBasic; if (Test-Path -LiteralPath '$winpath_escaped') { if ((Get-Item -LiteralPath '$winpath_escaped').PSIsContainer) { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } } else { Write-Error 'Path not found: $winpath_escaped' }"
+  if command -v timeout >/dev/null 2>&1; then
+    timeout 10s powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "$ps_command" ||
+      { echo "trash-win: PowerShell timed out for $target" >&2; exit 1; }
+  else
+    powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "$ps_command"
+  fi
 done
