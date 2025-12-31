@@ -9,9 +9,9 @@ Produce a dated, analogy-rich markdown entry in `CHANGELOG.md` so reviewers (hum
 
 ## Main use case
 
-- Default: staged + unstaged working tree summary, written into `CHANGELOG.md`.
+- Default: include committed changes since the last base marker in `CHANGELOG.md` plus current working tree edits, then record a new base marker.
 - Optional: limit to staged only or a specific commit range (e.g., `main..HEAD`).
-- Output: grouped by status (Added/Modified/Deleted/Renamed) with longer bullets and analogies for clarity.
+- Output: grouped by the first two path segments (e.g., `skills/brave-search`) with A/M/D/R counts and short analogies.
 
 ## Commands
 
@@ -26,3 +26,4 @@ Produce a dated, analogy-rich markdown entry in `CHANGELOG.md` so reviewers (hum
 - Requires git in PATH and a repository context.
 - Ignored dirs follow git defaults; handles renames via git diff output.
 - Writes/updates `CHANGELOG.md` at the repo root with dated sections and analogies; ideal for PRs, oracle prompts, or release notes.
+- The base commit marker is stored in each new changelog section and used on subsequent runs to avoid re-listing old commits.

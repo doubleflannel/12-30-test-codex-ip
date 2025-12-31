@@ -7,10 +7,15 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 type Entry = { status: 'A' | 'M' | 'D' | 'R'; path: string; from?: string };
+type Group = {
+  key: string;
+  counts: Record<Entry['status'], number>;
+};
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(HERE, '..');
 const CHANGELOG_PATH = path.join(ROOT, 'CHANGELOG.md');
+const BASE_MARKER_RE = /change-logger-base:\s*([0-9a-f]{7,40})/i;
 
 function runGit(args: string[]): string {
   try {
@@ -59,17 +64,41 @@ function parseStatus(output: string): Entry[] {
   return entries;
 }
 
-function collectEntries(range: string | null, stagedOnly: boolean): Entry[] {
-  if (range) {
-    const diff = runGit(['diff', '--name-status', range]);
-    return parseNameStatus(diff);
-  }
+function collectRangeEntries(range: string): Entry[] {
+  const diff = runGit(['diff', '--name-status', range]);
+  return parseNameStatus(diff);
+}
+
+function collectWorkingTreeEntries(stagedOnly: boolean): Entry[] {
   if (stagedOnly) {
     const diff = runGit(['diff', '--cached', '--name-status']);
     return parseNameStatus(diff);
   }
   const status = runGit(['status', '--porcelain=v1']);
   return parseStatus(status);
+}
+
+function mergeEntries(primary: Entry[], secondary: Entry[]): Entry[] {
+  const seen = new Set<string>();
+  const result: Entry[] = [];
+  const add = (entry: Entry) => {
+    const key = entry.status === 'R' ? `R:${entry.from ?? ''}->${entry.path}` : `${entry.status}:${entry.path}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    result.push(entry);
+  };
+  primary.forEach(add);
+  secondary.forEach(add);
+  return result;
+}
+
+function readBaseCommit(): string | null {
+  if (!fs.existsSync(CHANGELOG_PATH)) {
+    return null;
+  }
+  const existing = fs.readFileSync(CHANGELOG_PATH, 'utf8');
+  const match = existing.match(BASE_MARKER_RE);
+  return match?.[1] ?? null;
 }
 
 function formatAnalogy(entry: Entry): string {
@@ -87,20 +116,61 @@ function formatAnalogy(entry: Entry): string {
   }
 }
 
-function buildSection(entries: Entry[], title?: string): string {
+function groupKeyForPath(filePath: string): string {
+  const parts = filePath.split('/').filter(Boolean);
+  if (parts.length >= 2) {
+    return `${parts[0]}/${parts[1]}`;
+  }
+  return parts[0] ?? filePath;
+}
+
+function groupEntries(entries: Entry[]): Group[] {
+  const map = new Map<string, Group>();
+  entries.forEach((entry) => {
+    const key = groupKeyForPath(entry.path);
+    if (!map.has(key)) {
+      map.set(key, { key, counts: { A: 0, M: 0, D: 0, R: 0 } });
+    }
+    const group = map.get(key);
+    if (!group) return;
+    group.counts[entry.status] += 1;
+  });
+  return Array.from(map.values()).sort((a, b) => a.key.localeCompare(b.key));
+}
+
+function formatGroupLine(group: Group): string {
+  const counts = group.counts;
+  const total = counts.A + counts.M + counts.D + counts.R;
+  const parts = [
+    counts.A ? `A:${counts.A}` : null,
+    counts.M ? `M:${counts.M}` : null,
+    counts.D ? `D:${counts.D}` : null,
+    counts.R ? `R:${counts.R}` : null,
+  ].filter(Boolean);
+  const summary = parts.length > 0 ? ` (${parts.join(', ')})` : '';
+  const verb = counts.A && !counts.M && !counts.D && !counts.R ? 'Added' : counts.D && total === counts.D ? 'Removed' : 'Updated';
+  const analogy =
+    verb === 'Added'
+      ? 'like stocking a new shelf in the workshop so tools are easy to find.'
+      : verb === 'Removed'
+        ? 'like clearing out an unused drawer so the workspace stays tidy.'
+        : 'like reorganizing a drawer so the right tool is quicker to grab.';
+  return `${verb} ${group.key}${summary} to keep changes readable at a glance; ${analogy}`;
+}
+
+function buildSection(entries: Entry[], title?: string, baseCommit?: string): string {
   const today = new Date();
   const date = today.toISOString().slice(0, 10);
   const sectionTitle = title ? `${date} — ${title}` : `${date} — Working tree updates`;
+  const baseLine = baseCommit ? `_Base commit marker: ${baseCommit}_\n` : '';
   if (entries.length === 0) {
-    return `## ${sectionTitle}\n- No changes detected—like checking your backpack and finding everything already in place.\n\n`;
+    return `## ${sectionTitle}\n${baseLine}- No changes detected—like checking your backpack and finding everything already in place.\n\n`;
   }
 
-  const bullets = entries
-    .sort((a, b) => a.path.localeCompare(b.path))
-    .map((entry) => `- ${formatAnalogy(entry)}`)
-    .join('\n');
+  const groups = groupEntries(entries);
+  const bullets = groups.map((group) => `- ${formatGroupLine(group)}`).join('\n');
 
-  return `## ${sectionTitle}\n${bullets}\n\n`;
+  return `## ${sectionTitle}\n${baseLine}${bullets}\n\n`;
 }
 
 function upsertChangelog(section: string): void {
@@ -136,6 +206,12 @@ Options:
   --range <rev>   git diff range (e.g., main..HEAD). Overrides --staged.
   --title <text>  Title for the changelog section (default: working tree updates).
   --help          Show this help text.
+
+Notes:
+  If no --range is provided, the script will look for a base commit marker in
+  CHANGELOG.md and include commits since that marker, plus current working tree
+  changes. Each run records the latest HEAD commit as the new marker.
+  Output is grouped by the first two path segments (e.g., skills/brave-search).
 `);
 }
 
@@ -159,8 +235,29 @@ function main(): void {
     }
   }
 
-  const entries = collectEntries(range, stagedOnly);
-  const section = buildSection(entries, title);
+  let includeWorkingTree = true;
+  let effectiveRange = range;
+  let baseMarker: string | null = null;
+  let writeMarker = false;
+
+  if (!effectiveRange && !stagedOnly) {
+    baseMarker = readBaseCommit();
+    if (baseMarker) {
+      effectiveRange = `${baseMarker}..HEAD`;
+      writeMarker = true;
+    }
+  }
+
+  if (effectiveRange) {
+    includeWorkingTree = range === null;
+    writeMarker = true;
+  }
+
+  const rangeEntries = effectiveRange ? collectRangeEntries(effectiveRange) : [];
+  const workingEntries = includeWorkingTree ? collectWorkingTreeEntries(stagedOnly) : [];
+  const entries = mergeEntries(workingEntries, rangeEntries);
+  const headCommit = writeMarker ? runGit(['rev-parse', 'HEAD']) : undefined;
+  const section = buildSection(entries, title, headCommit);
   upsertChangelog(section);
 }
 
