@@ -1,11 +1,11 @@
 ---
 id: task-1
 title: Update AGENTS.md to acknowledge backlog board
-status: Done
+status: In Progress
 assignee:
   - codex
 created_date: '2025-12-31 20:01'
-updated_date: '2025-12-31 20:19'
+updated_date: '2025-12-31 20:24'
 labels: []
 dependencies: []
 ---
@@ -13,23 +13,23 @@ dependencies: []
 ## Description
 
 <!-- SECTION:DESCRIPTION:BEGIN -->
-Add a brief note in AGENTS.md that mentions the Backlog board command and that it requires at least one task to display.
+Replace the long Backlog block in AGENTS.MD with a two-line Backlog note under Agent Protocol (below PRs, above No ./runner). Line 1 states what Backlog is; line 2 states how to create a good task (read AGENTS.MD, skim CHANGELOG.md, search existing Backlog tasks, and write ≥3 hyper-specific AC).
 <!-- SECTION:DESCRIPTION:END -->
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [x] #1 AGENTS.MD includes the line: "Use Backlog for non-trivial work; read `backlog://workflow/overview` before creating tasks."
-- [x] #2 AGENTS.MD no longer contains the backlog board note added previously.
+- [ ] #1 AGENTS.MD no longer contains the "BACKLOG WORKFLOW INSTRUCTIONS" block or its surrounding markers.
+- [ ] #2 AGENTS.MD Agent Protocol section includes two Backlog lines placed below PRs and above the No ./runner rule.
 
-- [x] #3 New guidance appears within the existing Backlog instructions block.
+- [ ] #3 Line 1 states what Backlog is; line 2 instructs: read AGENTS.MD, skim CHANGELOG.md, search existing Backlog tasks, and write ≥3 hyper-specific acceptance criteria.
 <!-- AC:END -->
 
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-- Replace the added board note with a single short guidance line about using Backlog for non-trivial work and reading the overview before creating tasks.
-- Ensure the old board note is removed and guidance lives in the existing Backlog instructions block.
-- Verify the new line exists and matches agreed wording; update acceptance criteria.
+- Remove the entire Backlog instructions block in AGENTS.MD.
+- Add two Backlog lines under Agent Protocol, placed below PRs and above the No ./runner rule.
+- Use the agreed short wording; verify placement and remove the old block; check AC.
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
