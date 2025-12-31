@@ -1,7 +1,7 @@
 ---
 id: task-1
 title: Update AGENTS.md to acknowledge backlog board
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2025-12-31 20:01'
@@ -18,8 +18,8 @@ Add a brief note in AGENTS.md that mentions the Backlog board command and that i
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 AGENTS.md mentions `backlog board` command.
-- [ ] #2 Note clarifies board needs at least one task to display.
+- [x] #1 AGENTS.md mentions `backlog board` command.
+- [x] #2 Note clarifies board needs at least one task to display.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -29,3 +29,9 @@ Add a brief note in AGENTS.md that mentions the Backlog board command and that i
 - Keep wording minimal and consistent with existing Backlog instructions.
 - Save file; verify note present; check acceptance criteria.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Added Backlog board note to AGENTS.MD.
+<!-- SECTION:NOTES:END -->
