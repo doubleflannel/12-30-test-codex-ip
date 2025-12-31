@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - codex
 created_date: '2025-12-31 20:01'
-updated_date: '2025-12-31 20:24'
+updated_date: '2025-12-31 20:27'
 labels: []
 dependencies: []
 ---
@@ -21,7 +21,7 @@ Replace the long Backlog block in AGENTS.MD with a two-line Backlog note under A
 - [ ] #1 AGENTS.MD no longer contains the "BACKLOG WORKFLOW INSTRUCTIONS" block or its surrounding markers.
 - [ ] #2 AGENTS.MD Agent Protocol section includes two Backlog lines placed below PRs and above the No ./runner rule.
 
-- [ ] #3 Line 1 states what Backlog is; line 2 instructs: read AGENTS.MD, skim CHANGELOG.md, search existing Backlog tasks, and write ≥3 hyper-specific acceptance criteria.
+- [ ] #3 Line 1 is "Backlog: mandatory repo task tracker for all work." and line 2 says: read `AGENTS.md`, skim `CHANGELOG.md`, search Backlog tasks, include skills/scripts use if needed, describe the task in prescriptive language within 2 long paragraphs, mention how to test, and write 3 hyper-specific acceptance criteria.
 <!-- AC:END -->
 
 ## Implementation Plan
