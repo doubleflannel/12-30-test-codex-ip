@@ -1,11 +1,11 @@
 ---
 id: task-1
 title: Update AGENTS.md to acknowledge backlog board
-status: Done
+status: In Progress
 assignee:
   - codex
 created_date: '2025-12-31 20:01'
-updated_date: '2025-12-31 20:11'
+updated_date: '2025-12-31 20:19'
 labels: []
 dependencies: []
 ---
@@ -18,16 +18,18 @@ Add a brief note in AGENTS.md that mentions the Backlog board command and that i
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [x] #1 AGENTS.md mentions `backlog board` command.
-- [x] #2 Note clarifies board needs at least one task to display.
+- [ ] #1 AGENTS.MD includes the line: "Use Backlog for non-trivial work; read `backlog://workflow/overview` before creating tasks."
+- [ ] #2 AGENTS.MD no longer contains the backlog board note added previously.
+
+- [ ] #3 New guidance appears within the existing Backlog instructions block.
 <!-- AC:END -->
 
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-- Update AGENTS.MD Backlog section with a single bullet noting `backlog board` usage and that it requires at least one task.
-- Keep wording minimal and consistent with existing Backlog instructions.
-- Save file; verify note present; check acceptance criteria.
+- Replace the added board note with a single short guidance line about using Backlog for non-trivial work and reading the overview before creating tasks.
+- Ensure the old board note is removed and guidance lives in the existing Backlog instructions block.
+- Verify the new line exists and matches agreed wording; update acceptance criteria.
 <!-- SECTION:PLAN:END -->
 
 ## Implementation Notes
