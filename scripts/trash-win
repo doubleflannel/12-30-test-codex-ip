@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ "$#" -eq 0 ]; then
+  echo "Usage: trash-win <path>..." >&2
+  exit 1
+fi
+
+for target in "$@"; do
+  if [[ "$target" != /mnt/* ]]; then
+    echo "trash-win: path must be under /mnt/<drive> for Windows Recycle Bin: $target" >&2
+    exit 1
+  fi
+
+  winpath=$(wslpath -w -- "$target")
+  winpath_escaped=${winpath//\'/\'\'}
+
+  powershell.exe -NoProfile -Command "Add-Type -AssemblyName Microsoft.VisualBasic; if (Test-Path -LiteralPath '$winpath_escaped') { if ((Get-Item -LiteralPath '$winpath_escaped').PSIsContainer) { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } else { [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile('$winpath_escaped','OnlyErrorDialogs','SendToRecycleBin') } } else { Write-Error 'Path not found: $winpath_escaped' }"
+done

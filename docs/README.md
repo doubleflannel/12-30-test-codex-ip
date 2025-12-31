@@ -4,7 +4,7 @@ read_when: onboarding
 ---
 
 # Docs workflow
-- All docs live under `docs/`.
+- Project docs live under `docs/` (external references may live under `~/.codex/skills/*/reference`).
 - Every doc must start with front matter including `summary` (single line) and `read_when` (trigger tag like `ui`, `release`, `auth`).
 - Run `./scripts/docs-list.ts` at the start of each session to see what's relevant.
 - Keep docs concise and actionable; prefer checklists over prose where possible.
