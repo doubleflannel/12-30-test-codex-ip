@@ -13,6 +13,9 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens; short analogy;
 ## Agent Protocol
 - Workspace: `/mnt/c/Users/vnkbr/Code/12-30-test-codex-ip`.
 - PRs: use `gh pr view/diff` (no URLs).
+- Task tracker: Backlog is a mandatory repo task tracker for all work, accessed via backlog mcp.
+- Good task creation for Backlog mcp: read `AGENTS.md`, skim `CHANGELOG.md`, search Backlog tasks, include skills/scripts use if needed, describe the task in prescriptive language within 2 long paragraphs, mention how to test, write 3 hyper-specific acceptance criteria.
+- "Skip Backlog task": execute it without making tasks.
 - No `./runner` (not allowed here). Guardrails: use `trash` for deletes (move to system Trash; recoverable; avoid `rm`).
 - Need upstream file: stage in `tmp_staging/`, then cherry-pick; never overwrite tracked.
 - Bugs: add regression test when it fits.
