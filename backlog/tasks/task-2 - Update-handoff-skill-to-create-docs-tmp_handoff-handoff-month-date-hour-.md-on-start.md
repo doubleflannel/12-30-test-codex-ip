@@ -3,11 +3,11 @@ id: task-2
 title: >-
   Update handoff skill to create docs/tmp_handoff/handoff-<month-date>-<hour>.md
   on start
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2025-12-31 20:03'
-updated_date: '2025-12-31 20:33'
+updated_date: '2025-12-31 20:34'
 labels: []
 dependencies: []
 ---
@@ -22,9 +22,9 @@ Call out any skill/script usage only if needed (this should be a direct skill ed
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `/home/vnkbr/.codex/skills/handoff/SKILL.md` adds a first step instructing creation of `docs/tmp_handoff/handoff-<month-date>-<hour>.md` at skill start.
-- [ ] #2 The instruction includes an example filename `handoff-12-31-20.md` and specifies local time for the hour.
-- [ ] #3 The instruction states the note should use the existing "Include (in order)" handoff format and is created before listing the handoff content.
+- [x] #1 `/home/vnkbr/.codex/skills/handoff/SKILL.md` adds a first step instructing creation of `docs/tmp_handoff/handoff-<month-date>-<hour>.md` at skill start.
+- [x] #2 The instruction includes an example filename `handoff-12-31-20.md` and specifies local time for the hour.
+- [x] #3 The instruction states the note should use the existing "Include (in order)" handoff format and is created before listing the handoff content.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -35,3 +35,11 @@ Call out any skill/script usage only if needed (this should be a direct skill ed
 - Update `/home/vnkbr/.codex/skills/handoff/SKILL.md` to add the new first step that instructs creating this file before listing handoff content; keep wording minimal and aligned with current format.
 - Verify the new instruction matches the task acceptance criteria.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Created `docs/tmp_handoff/handoff-12-31-15.md` using current local time and populated it with the handoff bullets.
+
+Added a new first step in `/home/vnkbr/.codex/skills/handoff/SKILL.md` with the filename pattern, local time note, and example `handoff-12-31-20.md`.
+<!-- SECTION:NOTES:END -->
