@@ -1,9 +1,10 @@
 ---
 id: task-18
 title: Inspect latest screenshot asset and fix mismatch if needed
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-01 14:40'
+updated_date: '2026-01-01 14:41'
 labels:
   - assets
   - screenshot
@@ -24,3 +25,15 @@ If replacement is needed, swap in the verified PNG (same dimensions), ensure any
 - [ ] #2 If a replacement occurs, the repo asset is updated in-place (no duplicate files) and the new image dimensions match the old asset (record the dimension check output in notes).
 - [ ] #3 Commands `npm run lint`, `npm run build`, and `./scripts/docs-list.ts` are executed with exit codes recorded (or explicit blockers noted).
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Newest PNG: `/mnt/c/Users/vnkbr/Downloads/Screenshot 2026-01-01 093819.png`. Verdict: mismatch (not a UI screenshot asset; shows PowerShell error output).
+
+Repo check: no `*.png` assets in repo (`rg --files -g "*.png"` empty), so nothing to replace.
+
+What looks wrong in screenshot: `npm run dev` fails with "'next' is not recognized" -> deps not installed or wrong repo. Also `curl -I http://localhost:3000` hits PowerShell alias; use `curl.exe -I http://localhost:3000` or `Invoke-WebRequest -Method Head -Uri http://localhost:3000`.
+
+Tests/gate: not run yet; blockers = dependencies not installed in app repo; will run after install.
+<!-- SECTION:NOTES:END -->
