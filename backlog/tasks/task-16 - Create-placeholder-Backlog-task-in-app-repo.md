@@ -1,7 +1,7 @@
 ---
 id: task-16
 title: Create placeholder Backlog task in app repo
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-01-01 13:48'
 updated_date: '2026-01-01 20:10'
