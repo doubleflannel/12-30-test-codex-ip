@@ -1,11 +1,11 @@
 ---
 id: task-14
 title: Create app repo dupe-lp-okm and bootstrap Next.js dev
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2026-01-01 01:40'
-updated_date: '2026-01-01 13:27'
+updated_date: '2026-01-01 13:40'
 labels: []
 dependencies: []
 ---
@@ -20,9 +20,9 @@ Add a minimal Next.js App Router scaffold with npm scripts and dependencies so `
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 App repo exists at `/mnt/c/Users/vnkbr/Code/dupe-lp-okm`, is a git repo with `origin` set to `https://github.com/doubleflannel/dupe-lp-okm`, and has its own Backlog.md initialized.
-- [ ] #2 `package.json` in the app repo includes scripts for `dev`, `build`, `start`, and `lint` plus `next`, `react`, and `react-dom` dependencies; minimal `app/layout.tsx` and `app/page.tsx` exist.
-- [ ] #3 `README.md` in the app repo documents `npm run dev`, expected local URL output, and a simple success check; `npm run dev` output (success URL or blocker) is recorded in task notes.
+- [x] #1 App repo exists at `/mnt/c/Users/vnkbr/Code/dupe-lp-okm`, is a git repo with `origin` set to `https://github.com/doubleflannel/dupe-lp-okm`, and has its own Backlog.md initialized.
+- [x] #2 `package.json` in the app repo includes scripts for `dev`, `build`, `start`, and `lint` plus `next`, `react`, and `react-dom` dependencies; minimal `app/layout.tsx` and `app/page.tsx` exist.
+- [x] #3 `README.md` in the app repo documents `npm run dev`, expected local URL output, and a simple success check; `npm run dev` output (success URL or blocker) is recorded in task notes.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -56,4 +56,16 @@ npm install next/react/react-dom completed with lockfile warning: "invalid or da
 Multiple npm install attempts for dev deps hung or ended with ENOTEMPTY rename errors; npm ls next shows invalid next installation.
 
 Current state: node_modules exists; npm ls next reports invalid; install likely incomplete on /mnt/c filesystem.
+
+Created app repo at /mnt/c/Users/vnkbr/Code/dupe-lp-okm, initialized git, renamed branch to main, set origin to https://github.com/doubleflannel/dupe-lp-okm.
+
+Initialized Backlog.md in app repo (backlog/ created; MCP configured for OpenAI Codex).
+
+Installed deps: next@16.1.1, react@19.2.3, react-dom@19.2.3; dev deps: typescript@5.9.3, @types/react@19.2.7, @types/react-dom@19.2.3, @types/node@25.0.3, eslint@9.39.2, eslint-config-next@16.1.1.
+
+Created app scaffold: app/layout.tsx and app/page.tsx.
+
+README.md includes npm run dev instructions and success check.
+
+npm run dev output: "Next.js 16.1.1 (Turbopack)" with Local http://localhost:3000, then "Starting..." (stopped after confirming URL).
 <!-- SECTION:NOTES:END -->
