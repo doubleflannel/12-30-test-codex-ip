@@ -4,7 +4,7 @@ title: Add web reference intake doc + Playwright DOM/CSS dump script
 status: In Progress
 assignee: []
 created_date: '2026-01-01 23:12'
-updated_date: '2026-01-01 23:45'
+updated_date: '2026-01-01 23:46'
 labels: []
 dependencies: []
 ---
@@ -20,7 +20,7 @@ Implement a CLI script `scripts/web-ref-intake.ts` that takes a URL and writes a
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 `./scripts/docs-list.ts` lists `docs/web-ref/web-ref-intake.md`, and the doc includes sections `The actually-reliable way`, `How to run`, `Success looks like`, and `Quick check`.
-- [ ] #2 Running `npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --out tmp/page-dump.json` creates `tmp/page-dump.json` containing JSON keys `url`, `html`, `cssLinks`, and `inlineStyles`.
+- [ ] #2 Running `npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --selectors "h1,.hero" --max-nodes 3` creates `docs/web-ref/<url>/page-dump.json` containing JSON keys `url`, `html`, `cssLinks`, and `inlineStyles`.
 - [ ] #3 `README.md` adds a bullet that mentions `scripts/web-ref-intake.ts` and notes the Playwright dependency or install step.
 <!-- AC:END -->
 
