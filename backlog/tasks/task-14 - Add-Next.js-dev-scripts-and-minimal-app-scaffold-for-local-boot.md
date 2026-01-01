@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - codex
 created_date: '2026-01-01 01:40'
-updated_date: '2026-01-01 01:48'
+updated_date: '2026-01-01 02:24'
 labels: []
 dependencies: []
 ---
@@ -47,4 +47,12 @@ npm install attempt (no progress) was interrupted (hung).
 npm install with loglevel=info failed: ENOTEMPTY rename at node_modules/baseline-browser-mapping -> node_modules/.baseline-browser-mapping-<tmp>; log: /home/vnkbr/.npm/_logs/2026-01-01T01_47_56_936Z-debug-0.log.
 
 Blocker: likely stale node_modules; need permission to trash node_modules and re-run install.
+
+User approved trashing node_modules; ran ./scripts/trash-win and reinstalled deps.
+
+npm install next/react/react-dom completed with lockfile warning: "invalid or damaged lockfile detected" (added 22 packages).
+
+Multiple npm install attempts for dev deps hung or ended with ENOTEMPTY rename errors; npm ls next shows invalid next installation.
+
+Current state: node_modules exists; npm ls next reports invalid; install likely incomplete on /mnt/c filesystem.
 <!-- SECTION:NOTES:END -->
