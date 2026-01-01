@@ -5,7 +5,7 @@ status: In Progress
 assignee:
   - codex
 created_date: '2026-01-01 01:40'
-updated_date: '2026-01-01 01:40'
+updated_date: '2026-01-01 01:48'
 labels: []
 dependencies: []
 ---
@@ -34,3 +34,17 @@ How to test: run `npm run dev` and confirm a local URL is printed and loads a ba
 4) Add a short doc note or README update for the dev command.
 5) Run npm run dev to verify boot and capture output.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Docs list: ./scripts/docs-list.ts (repo-ref/repo-ref-lp-okm.md flagged missing front matter).
+
+Updated scripts via npm pkg set: dev/build/start/lint.
+
+npm install attempt (no progress) was interrupted (hung).
+
+npm install with loglevel=info failed: ENOTEMPTY rename at node_modules/baseline-browser-mapping -> node_modules/.baseline-browser-mapping-<tmp>; log: /home/vnkbr/.npm/_logs/2026-01-01T01_47_56_936Z-debug-0.log.
+
+Blocker: likely stale node_modules; need permission to trash node_modules and re-run install.
+<!-- SECTION:NOTES:END -->
