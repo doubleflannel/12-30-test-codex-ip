@@ -4,6 +4,7 @@ title: 'Bootstrap local dev run (confirm PM, install deps, run dev)'
 status: To Do
 assignee: []
 created_date: '2026-01-01 01:29'
+updated_date: '2026-01-01 01:30'
 labels: []
 dependencies: []
 ---
@@ -22,3 +23,11 @@ Install dependencies with the confirmed PM, then attempt to run the dev server a
 - [ ] #2 Dependency install attempt is recorded with outcome, including the exact error output if it fails.
 - [ ] #3 Dev server start attempt is recorded with outcome, including the local URL on success or the missing-script/blocker text on failure.
 <!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+1) Confirm package manager and lockfile.
+2) Install dependencies with repo PM.
+3) Run dev server and verify app boots (or capture blocker).
+<!-- SECTION:PLAN:END -->
