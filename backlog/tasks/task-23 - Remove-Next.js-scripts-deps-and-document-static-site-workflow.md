@@ -1,9 +1,10 @@
 ---
 id: task-23
 title: Remove Next.js scripts/deps and document static-site workflow
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-01 23:20'
+updated_date: '2026-01-01 23:22'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,17 @@ Update docs to match the behavior change: add a short `docs/static-site-workflow
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `package.json` no longer lists `next`, `react`, `react-dom`, or `eslint-config-next`, and `npm run lint` / `npm run build` print a static-workflow message and exit 0.
-- [ ] #2 `docs/static-site-workflow.md` exists with `summary` and `read_when` front matter plus sections `How to run`, `Success looks like`, and `Quick check`.
-- [ ] #3 `README.md` mentions the static workflow and the no-op lint/build behavior.
+- [x] #1 `package.json` no longer lists `next`, `react`, `react-dom`, or `eslint-config-next`, and `npm run lint` / `npm run build` print a static-workflow message and exit 0.
+- [x] #2 `docs/static-site-workflow.md` exists with `summary` and `read_when` front matter plus sections `How to run`, `Success looks like`, and `Quick check`.
+- [x] #3 `README.md` mentions the static workflow and the no-op lint/build behavior.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: removed Next/React deps + eslint-config-next from package.json; lint/build/dev/start now no-op with static guidance; added docs/static-site-workflow.md; updated README.md static workflow note.
+
+Checks: ./scripts/docs-list.ts shows docs/static-site-workflow.md.
+
+Notes: npm install not run; package-lock unchanged/ignored per .gitignore.
+<!-- SECTION:NOTES:END -->
