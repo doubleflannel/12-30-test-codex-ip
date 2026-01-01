@@ -4,7 +4,7 @@ title: Add short cross-link between hub repo and app repo
 status: In Progress
 assignee: []
 created_date: '2026-01-01 13:48'
-updated_date: '2026-01-01 20:07'
+updated_date: '2026-01-01 20:09'
 labels: []
 dependencies: []
 ---
@@ -19,7 +19,17 @@ How to test: open both README files and confirm the link text appears with the c
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `README.md` in `/mnt/c/Users/vnkbr/Code/12-30-test-codex-ip` contains a 2–4 line section that links to `https://github.com/doubleflannel/dupe-lp-okm` and states this repo is the workflow/docs hub.
-- [ ] #2 `README.md` in `/mnt/c/Users/vnkbr/Code/dupe-lp-okm` contains a 2–4 line section that links back to `/mnt/c/Users/vnkbr/Code/12-30-test-codex-ip` (and optionally its GitHub URL if provided) and states app code lives here.
-- [ ] #3 A CLI check `rg -n "dupe-lp-okm" README.md` run in each repo returns the new cross-link section lines (not just an existing mention).
+- [x] #1 `README.md` in `/mnt/c/Users/vnkbr/Code/12-30-test-codex-ip` contains a 2–4 line section that links to `https://github.com/doubleflannel/dupe-lp-okm` and states this repo is the workflow/docs hub.
+- [x] #2 `README.md` in `/mnt/c/Users/vnkbr/Code/dupe-lp-okm` contains a 2–4 line section that links back to `/mnt/c/Users/vnkbr/Code/12-30-test-codex-ip` (and optionally its GitHub URL if provided) and states app code lives here.
+- [x] #3 A CLI check `rg -n "dupe-lp-okm" README.md` run in each repo returns the new cross-link section lines (not just an existing mention).
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Edits: added cross-link sections in `README.md` (hub) and `/mnt/c/Users/vnkbr/Code/dupe-lp-okm/README.md` (app).
+
+CLI check (hub): `rg -n "dupe-lp-okm" README.md` -> line 6 shows new section link.
+
+CLI check (app): `rg -n "dupe-lp-okm" README.md` -> line 12 shows new cross-link section line.
+<!-- SECTION:NOTES:END -->
