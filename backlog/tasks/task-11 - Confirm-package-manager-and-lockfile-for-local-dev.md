@@ -1,10 +1,11 @@
 ---
 id: task-11
 title: Confirm package manager and lockfile for local dev
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - codex
 created_date: '2026-01-01 01:29'
-updated_date: '2026-01-01 01:31'
+updated_date: '2026-01-01 01:36'
 labels: []
 dependencies: []
 ---
