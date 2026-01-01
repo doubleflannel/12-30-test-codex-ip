@@ -1,9 +1,11 @@
 ---
 id: task-13
 title: Run dev server and verify boot (or capture blocker)
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - codex
 created_date: '2026-01-01 01:31'
+updated_date: '2026-01-01 01:36'
 labels: []
 dependencies:
   - task-12
@@ -23,3 +25,12 @@ How to test: run `npm run dev`, record the full console output, and if a local U
 - [ ] #2 If the dev server starts, task notes include the local URL shown in the output and a short note that the page loads; if it fails, task notes include the exact missing-script or error line.
 - [ ] #3 Task notes include a clear final status line: `Dev server: started` or `Dev server: blocked (reason: ...)`.
 <!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+1) Run npm run dev at repo root.
+2) Record full output and exit status.
+3) Note local URL on success or exact blocker line on failure.
+4) Record final status line.
+<!-- SECTION:PLAN:END -->
