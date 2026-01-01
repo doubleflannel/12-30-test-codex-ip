@@ -1,10 +1,10 @@
 ---
 id: task-21
 title: Run full hub repo functionality smoke checks
-status: In Progress
+status: Done
 assignee: []
 created_date: '2026-01-01 21:03'
-updated_date: '2026-01-01 21:10'
+updated_date: '2026-01-01 21:48'
 labels:
   - smoke
   - tooling
@@ -24,15 +24,12 @@ How to test: run each command and capture the first 1–3 lines of output plus e
 <!-- AC:BEGIN -->
 - [x] #1 `./scripts/docs-list.ts` exits 0 and prints the line `Listing all markdown files in docs folder:`; notes include a short output snippet.
 - [x] #2 `./scripts/committer --help` exits 0 and prints a usage/help line containing `committer` (record the exact line).
-- [ ] #3 `./scripts/trash-win --help` exits 0 and prints a usage/help line; notes include the first line and exit code.
+- [x] #3 `./scripts/trash-win --help` exits 0 and prints a usage/help line; notes include the first line and exit code.
 <!-- AC:END -->
 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
-<!-- SECTION:NOTES:BEGIN -->
-<!-- SECTION:NOTES:END -->
-
 `./scripts/docs-list.ts` -> exit 0; first line: "Listing all markdown files in docs folder:".
 
 `./scripts/committer --help` -> exit 0; line: "Usage: committer [--force] \"commit message\" \"file\" [\"file\" ...]".
@@ -44,6 +41,10 @@ How to test: run each command and capture the first 1–3 lines of output plus e
 `./scripts/change-logger.ts --help` -> exit 0; line: "Usage: change-logger [--staged] [--range <rev>] [--title <text>] [--help]".
 
 `./scripts/browser-tools.ts --help` -> exit 127; error: "/usr/bin/env: ‘ts-node’: No such file or directory". Minimal fix-forward: install ts-node or run via `npx tsx` if preferred.
-<!-- SECTION:NOTES:END -->
 
+After changes: `./scripts/trash-win --help` -> exit 0; output: "Usage: trash-win <path>...".
+
+Installed `ts-node` and `puppeteer-core` in hub repo via PowerShell `npm install --save-dev ...` to avoid /mnt/c rename issues.
+
+`npx ts-node --project tsconfig.scripts.json scripts/browser-tools.ts --help` -> exit 0; usage output printed.
 <!-- SECTION:NOTES:END -->
