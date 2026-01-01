@@ -21,7 +21,7 @@ If replacement is needed, swap in the verified PNG (same dimensions), ensure any
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Task notes include the exact newest PNG filename from `/mnt/c/Users/vnkbr/Downloads` plus a one-line match/mismatch verdict.
+- [x] #1 Task notes include the exact newest PNG filename from `/mnt/c/Users/vnkbr/Downloads` plus a one-line match/mismatch verdict.
 - [ ] #2 If a replacement occurs, the repo asset is updated in-place (no duplicate files) and the new image dimensions match the old asset (record the dimension check output in notes).
 - [ ] #3 Commands `npm run lint`, `npm run build`, and `./scripts/docs-list.ts` are executed with exit codes recorded (or explicit blockers noted).
 <!-- AC:END -->
