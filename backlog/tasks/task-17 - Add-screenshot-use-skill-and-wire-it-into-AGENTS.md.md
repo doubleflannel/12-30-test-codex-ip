@@ -1,9 +1,11 @@
 ---
 id: task-17
 title: Add screenshot-use skill and wire it into AGENTS.md
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - codex
 created_date: '2026-01-01 13:52'
+updated_date: '2026-01-01 14:27'
 labels: []
 dependencies: []
 ---
@@ -22,3 +24,12 @@ Update `AGENTS.MD` to reference the new skill under Tools and remove the existin
 - [ ] #2 `AGENTS.MD` no longer contains the standalone "Screenshots ("use a screenshot")" section, and the Tools list includes a new entry for `skills/screenshot-use` with a short description.
 - [ ] #3 Running `rg -n "screenshot" AGENTS.MD skills/screenshot-use/SKILL.md` shows the workflow only in the skill file and a single Tools reference in AGENTS.
 <!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+1) Create skills/screenshot-use/SKILL.md with the required bullets and standard skill header.
+2) Remove the standalone Screenshots section from AGENTS.MD.
+3) Add a Tools entry for skills/screenshot-use in AGENTS.MD.
+4) Verify with rg that the workflow lives only in the skill file and AGENTS has a single reference.
+<!-- SECTION:PLAN:END -->
