@@ -1,9 +1,10 @@
 ---
 id: task-15
 title: Add short cross-link between hub repo and app repo
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-01 13:48'
+updated_date: '2026-01-01 20:07'
 labels: []
 dependencies: []
 ---
