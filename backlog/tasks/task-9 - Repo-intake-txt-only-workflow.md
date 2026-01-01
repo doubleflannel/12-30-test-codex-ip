@@ -20,4 +20,6 @@ How to test: run ./scripts/docs-list.ts and confirm repo-intake.md is listed wit
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
 - [ ] #1 How to test/verify references only ./scripts/docs-list.ts and rg, and includes the repo-intake.md listing check.
+
+- [ ] #2 docs/repo-intake.md has no CLI entrypoint or How to run headings; rg -n "CLI entrypoint|How to run" docs/repo-intake.md returns no matches (exit 1).,Directive and Text-only sections explicitly state .txt-only input and call for signals/flow/intricacies/targeted follow-up questions.,How to test/verify references only ./scripts/docs-list.ts and rg and includes the repo-intake.md listing check.
 <!-- AC:END -->
