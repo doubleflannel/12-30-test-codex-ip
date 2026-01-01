@@ -1,0 +1,59 @@
+---
+id: task-14
+title: Create app repo dupe-lp-okm and bootstrap Next.js dev
+status: In Progress
+assignee:
+  - codex
+created_date: '2026-01-01 01:40'
+updated_date: '2026-01-01 13:27'
+labels: []
+dependencies: []
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+Create the new app repo at `/mnt/c/Users/vnkbr/Code/dupe-lp-okm`, initialize git, set the HTTPS remote to `https://github.com/doubleflannel/dupe-lp-okm`, and initialize a separate Backlog.md tracker inside the app repo so work is tracked locally for that codebase.
+
+Add a minimal Next.js App Router scaffold with npm scripts and dependencies so `npm run dev` can start a local server; include a short README section describing how to run and what success looks like; keep files small and readable; testing is running `npm run dev` and capturing the local URL or the exact blocker if the filesystem install fails.
+<!-- SECTION:DESCRIPTION:END -->
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [ ] #1 App repo exists at `/mnt/c/Users/vnkbr/Code/dupe-lp-okm`, is a git repo with `origin` set to `https://github.com/doubleflannel/dupe-lp-okm`, and has its own Backlog.md initialized.
+- [ ] #2 `package.json` in the app repo includes scripts for `dev`, `build`, `start`, and `lint` plus `next`, `react`, and `react-dom` dependencies; minimal `app/layout.tsx` and `app/page.tsx` exist.
+- [ ] #3 `README.md` in the app repo documents `npm run dev`, expected local URL output, and a simple success check; `npm run dev` output (success URL or blocker) is recorded in task notes.
+<!-- AC:END -->
+
+## Implementation Plan
+
+<!-- SECTION:PLAN:BEGIN -->
+1) Create app repo directory, git init, set origin remote.
+2) Initialize Backlog.md in the new repo.
+3) Create package.json with scripts and dependencies (npm).
+4) Add minimal App Router scaffold (app/layout.tsx, app/page.tsx).
+5) Add README dev instructions.
+6) Install deps and attempt npm run dev; record output or blocker.
+<!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Docs list: ./scripts/docs-list.ts (repo-ref/repo-ref-lp-okm.md flagged missing front matter).
+
+Updated scripts via npm pkg set: dev/build/start/lint.
+
+npm install attempt (no progress) was interrupted (hung).
+
+npm install with loglevel=info failed: ENOTEMPTY rename at node_modules/baseline-browser-mapping -> node_modules/.baseline-browser-mapping-<tmp>; log: /home/vnkbr/.npm/_logs/2026-01-01T01_47_56_936Z-debug-0.log.
+
+Blocker: likely stale node_modules; need permission to trash node_modules and re-run install.
+
+User approved trashing node_modules; ran ./scripts/trash-win and reinstalled deps.
+
+npm install next/react/react-dom completed with lockfile warning: "invalid or damaged lockfile detected" (added 22 packages).
+
+Multiple npm install attempts for dev deps hung or ended with ENOTEMPTY rename errors; npm ls next shows invalid next installation.
+
+Current state: node_modules exists; npm ls next reports invalid; install likely incomplete on /mnt/c filesystem.
+<!-- SECTION:NOTES:END -->
