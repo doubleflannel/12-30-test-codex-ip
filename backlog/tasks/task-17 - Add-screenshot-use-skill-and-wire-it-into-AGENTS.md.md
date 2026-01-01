@@ -1,0 +1,24 @@
+---
+id: task-17
+title: Add screenshot-use skill and wire it into AGENTS.md
+status: To Do
+assignee: []
+created_date: '2026-01-01 13:52'
+labels: []
+dependencies: []
+---
+
+## Description
+
+<!-- SECTION:DESCRIPTION:BEGIN -->
+Create a new skill at `skills/screenshot-use/SKILL.md` that contains the exact screenshot workflow instructions so agents can follow a single, reusable skill; keep the content concise, ASCII-only, and aligned with the existing skill format.
+
+Update `AGENTS.MD` to reference the new skill under Tools and remove the existing standalone "Screenshots ("use a screenshot")" section, so the screenshot workflow is only defined in one place; verify the resulting AGENTS layout still reads cleanly and the new skill is discoverable from the Tools list.
+<!-- SECTION:DESCRIPTION:END -->
+
+## Acceptance Criteria
+<!-- AC:BEGIN -->
+- [ ] #1 `skills/screenshot-use/SKILL.md` exists and includes the three bullet instructions for selecting the newest PNG, verifying UI, replacing asset, and running gate/CI; file follows the same heading and description style as other skills.
+- [ ] #2 `AGENTS.MD` no longer contains the standalone "Screenshots ("use a screenshot")" section, and the Tools list includes a new entry for `skills/screenshot-use` with a short description.
+- [ ] #3 Running `rg -n "screenshot" AGENTS.MD skills/screenshot-use/SKILL.md` shows the workflow only in the skill file and a single Tools reference in AGENTS.
+<!-- AC:END -->
