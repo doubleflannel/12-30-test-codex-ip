@@ -1,7 +1,7 @@
 ---
 id: task-12
 title: Install dependencies with repo package manager
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2026-01-01 01:31'
@@ -21,9 +21,9 @@ How to test: run the install command, record the final output line and exit stat
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Task notes include the exact install command (`npm install`) and the final output line plus exit status.
-- [ ] #2 Task notes include `ls -ld node_modules` output showing the folder exists after install.
-- [ ] #3 Task notes capture any warnings or vulnerability counts, or explicitly state `Warnings: none` and `Vulnerabilities: 0`.
+- [x] #1 Task notes include the exact install command (`npm install`) and the final output line plus exit status.
+- [x] #2 Task notes include `ls -ld node_modules` output showing the folder exists after install.
+- [x] #3 Task notes capture any warnings or vulnerability counts, or explicitly state `Warnings: none` and `Vulnerabilities: 0`.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -34,3 +34,19 @@ How to test: run the install command, record the final output line and exit stat
 3) Capture node_modules directory listing.
 4) Record warnings/vulnerability counts (or none).
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Command: npm install
+
+Final line: found 0 vulnerabilities
+
+Exit status: 0
+
+node_modules: drwxrwxrwx 1 vnkbr vnkbr 512 Dec 30 08:00 node_modules
+
+Warnings: none
+
+Vulnerabilities: 0
+<!-- SECTION:NOTES:END -->
