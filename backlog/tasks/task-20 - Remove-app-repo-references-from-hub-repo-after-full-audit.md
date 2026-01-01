@@ -1,9 +1,10 @@
 ---
 id: task-20
 title: Remove app repo references from hub repo after full audit
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-01 20:29'
+updated_date: '2026-01-01 20:33'
 labels: []
 dependencies: []
 ---
