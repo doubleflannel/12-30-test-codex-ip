@@ -4,7 +4,7 @@ title: Add web reference intake doc + Playwright DOM/CSS dump script
 status: In Progress
 assignee: []
 created_date: '2026-01-01 23:12'
-updated_date: '2026-01-01 23:16'
+updated_date: '2026-01-01 23:45'
 labels: []
 dependencies: []
 ---
@@ -32,4 +32,6 @@ Progress: added docs/web-ref/web-ref-intake.md with Playwright section + example
 Checks: ./scripts/docs-list.ts now lists web-ref/web-ref-intake.md.
 
 Next: run web-ref-intake script after npm install + playwright install to confirm JSON output keys.
+
+Update: web-ref intake output now defaults to docs/web-ref/<url>/page-dump.json (URL sanitized); --out accepts filename only. Fixed TypeScript element typing for stylesheet links. Re-run command with --max-nodes (not --max-nodex).
 <!-- SECTION:NOTES:END -->
