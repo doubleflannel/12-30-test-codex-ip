@@ -4,7 +4,7 @@ title: Run full hub repo functionality smoke checks
 status: Done
 assignee: []
 created_date: '2026-01-01 21:03'
-updated_date: '2026-01-01 21:48'
+updated_date: '2026-01-01 21:50'
 labels:
   - smoke
   - tooling
@@ -47,4 +47,8 @@ After changes: `./scripts/trash-win --help` -> exit 0; output: "Usage: trash-win
 Installed `ts-node` and `puppeteer-core` in hub repo via PowerShell `npm install --save-dev ...` to avoid /mnt/c rename issues.
 
 `npx ts-node --project tsconfig.scripts.json scripts/browser-tools.ts --help` -> exit 0; usage output printed.
+
+Re-check: `./scripts/browser-tools.ts --help` now exits 0 and prints usage (after tsconfig update + deps installed).
+
+Re-check: `./scripts/trash-win --help` exits 0 with usage line after help handling added.
 <!-- SECTION:NOTES:END -->
