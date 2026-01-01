@@ -6,14 +6,24 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
   "devDependencies": {
-    "oracle": "npm:@steipete/oracle"
+    "@types/node": "25.0.3",
+    "eslint": "9.39.2",
+    "oracle": "npm:@steipete/oracle",
+    "playwright": "^1.57.0",
+    "puppeteer-core": "^24.34.0",
+    "ts-node": "^10.9.2",
+    "typescript": "5.9.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node -e \"console.log('Static site: run \\\"python3 -m http.server 3000\\\" and open http://localhost:3000')\"",
+    "build": "node -e \"console.log('Static site: no build step configured.')\"",
+    "start": "node -e \"console.log('Static site: run \\\"python3 -m http.server 3000\\\" and open http://localhost:3000')\"",
+    "lint": "node -e \"console.log('Static site: no lint step configured.')\""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
