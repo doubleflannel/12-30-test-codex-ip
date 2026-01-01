@@ -1,9 +1,10 @@
 ---
 id: task-22
 title: Add web reference intake doc + Playwright DOM/CSS dump script
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-01 23:12'
+updated_date: '2026-01-01 23:16'
 labels: []
 dependencies: []
 ---
@@ -22,3 +23,13 @@ Implement a CLI script `scripts/web-ref-intake.ts` that takes a URL and writes a
 - [ ] #2 Running `npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --out tmp/page-dump.json` creates `tmp/page-dump.json` containing JSON keys `url`, `html`, `cssLinks`, and `inlineStyles`.
 - [ ] #3 `README.md` adds a bullet that mentions `scripts/web-ref-intake.ts` and notes the Playwright dependency or install step.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Progress: added docs/web-ref/web-ref-intake.md with Playwright section + example, added scripts/web-ref-intake.ts, updated README.md, added playwright devDependency.
+
+Checks: ./scripts/docs-list.ts now lists web-ref/web-ref-intake.md.
+
+Next: run web-ref-intake script after npm install + playwright install to confirm JSON output keys.
+<!-- SECTION:NOTES:END -->
