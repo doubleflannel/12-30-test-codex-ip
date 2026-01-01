@@ -1,11 +1,11 @@
 ---
 id: task-9
 title: 'Repo intake: txt-only workflow'
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2026-01-01 00:15'
-updated_date: '2026-01-01 00:22'
+updated_date: '2026-01-01 00:24'
 labels: []
 dependencies: []
 ---
@@ -20,9 +20,9 @@ How to test: run ./scripts/docs-list.ts and confirm repo-intake.md is listed wit
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 docs/repo-intake.md has no CLI entrypoint or How to run headings; rg -n "CLI entrypoint|How to run" docs/repo-intake.md returns no matches (exit 1).
-- [ ] #2 Directive and Text-only sections explicitly state .txt-only input and call for signals/flow/intricacies/targeted follow-up questions.
-- [ ] #3 How to test/verify references only ./scripts/docs-list.ts and rg and includes the repo-intake.md listing check.
+- [x] #1 docs/repo-intake.md has no CLI entrypoint or How to run headings; rg -n "CLI entrypoint|How to run" docs/repo-intake.md returns no matches (exit 1).
+- [x] #2 Directive and Text-only sections explicitly state .txt-only input and call for signals/flow/intricacies/targeted follow-up questions.
+- [x] #3 How to test/verify references only ./scripts/docs-list.ts and rg and includes the repo-intake.md listing check.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -32,3 +32,9 @@ How to test: run ./scripts/docs-list.ts and confirm repo-intake.md is listed wit
 - Make directive and text-only sections explicit about .txt-only input and required outputs (signals/flow/intricacies/follow-ups).
 - Ensure How to test/verify references only ./scripts/docs-list.ts and rg, and add a no-CLI rg check.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updated repo-intake to .txt-only, removed CLI sections, and verified headings + no CLI wording.
+<!-- SECTION:NOTES:END -->
