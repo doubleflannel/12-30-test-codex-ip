@@ -1,7 +1,7 @@
 ---
 id: task-11
 title: Confirm package manager and lockfile for local dev
-status: In Progress
+status: Done
 assignee:
   - codex
 created_date: '2026-01-01 01:29'
@@ -20,9 +20,9 @@ How to test: add a short note in this task that states the chosen package manage
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Task notes include a single line that reads `Package manager: npm` and a single line that reads `Lockfile: package-lock.json`.
-- [ ] #2 Task notes include the exact `rg --files` command used to discover lockfiles and the summarized result list.
-- [ ] #3 Task notes include an explicit statement `Other lockfiles: none` or a comma-separated list of any additional lockfiles found.
+- [x] #1 Task notes include a single line that reads `Package manager: npm` and a single line that reads `Lockfile: package-lock.json`.
+- [x] #2 Task notes include the exact `rg --files` command used to discover lockfiles and the summarized result list.
+- [x] #3 Task notes include an explicit statement `Other lockfiles: none` or a comma-separated list of any additional lockfiles found.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -30,3 +30,17 @@ How to test: add a short note in this task that states the chosen package manage
 <!-- SECTION:PLAN:BEGIN -->
 1) Locate lockfiles at repo root and record the package manager decision in task notes.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Package manager: npm
+
+Lockfile: package-lock.json
+
+Other lockfiles: skills/brave-search/package-lock.json
+
+Command: rg --files -g 'package-lock.json' -g 'pnpm-lock.yaml' -g 'yarn.lock' -g 'bun.lockb' -g 'bun.lock'
+
+Result: package-lock.json; skills/brave-search/package-lock.json
+<!-- SECTION:NOTES:END -->
