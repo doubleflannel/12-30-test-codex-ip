@@ -35,7 +35,7 @@ Repo check: no `*.png` assets in repo (`rg --files -g "*.png"` empty), so nothin
 
 What looks wrong in screenshot: `npm run dev` fails with "'next' is not recognized" -> deps not installed or wrong repo. Also `curl -I http://localhost:3000` hits PowerShell alias; use `curl.exe -I http://localhost:3000` or `Invoke-WebRequest -Method Head -Uri http://localhost:3000`.
 
-Tests/gate: not run yet; blockers = dependencies not installed in app repo; will run after install.
+Tests/gate: not run yet; blockers = dependencies not installed in secondary codebase; will run after install.
 
 Latest PNG verified UI screenshot: `/mnt/c/Users/vnkbr/Downloads/Screenshot 2026-01-01 150033.png` (localhost page). No repo screenshot asset exists; skipping replacement per request.
 
