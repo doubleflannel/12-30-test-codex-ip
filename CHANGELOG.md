@@ -1,6 +1,30 @@
 Timeline of project changes with beginner-friendly analogies for quick scanning.
 
 # Changelog
+## 2026-01-01 — Working tree updates
+- Added "backlog/archive (A:3) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated "backlog/tasks (A:1, D:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+- Added backlog/config.yml (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated CHANGELOG.md (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+- Added docs/backlog.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Added docs/repo-intake.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated gitignore (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+
+## 2025-12-31 — Working tree updates
+- Added docs/backlog.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Added docs/repo-intake.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated HANGELOG.md (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+
+## 2025-12-31 — Working tree updates
+- Updated CHANGELOG.md (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+- Added docs/architecture-intake.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Added docs/backlog.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated gitignore (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+
+## 2025-12-31 — Working tree updates
+- Added docs/backlog.md (A:1) to keep changes readable at a glance; like stocking a new shelf in the workshop so tools are easy to find.
+- Updated gitignore (M:1) to keep changes readable at a glance; like reorganizing a drawer so the right tool is quicker to grab.
+
 ## 2025-12-31 — Working tree updates
 _Base commit marker: 75f6c2e18a690dcdc6553be3781c481ed5829426_
 - Updated .gitignore to refine behavior and readability, reducing friction for anyone touching that path next; like repainting a hallway and replacing the signs so traffic flows smoothly instead of guessing which way to turn.
