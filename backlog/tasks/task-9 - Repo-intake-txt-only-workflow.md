@@ -16,10 +16,3 @@ Before editing docs/repo-intake.md, read AGENTS.md and skim CHANGELOG.md, then s
 
 How to test: run ./scripts/docs-list.ts and confirm repo-intake.md is listed with the same summary; run rg -n "Directive|Text-only|Output format|How to test/verify" docs/repo-intake.md to confirm those headings exist; run rg -n "CLI entrypoint|How to run" docs/repo-intake.md and confirm it returns no matches.
 <!-- SECTION:DESCRIPTION:END -->
-
-## Acceptance Criteria
-<!-- AC:BEGIN -->
-- [ ] #1 How to test/verify references only ./scripts/docs-list.ts and rg, and includes the repo-intake.md listing check.
-
-- [ ] #2 docs/repo-intake.md has no CLI entrypoint or How to run headings; rg -n "CLI entrypoint|How to run" docs/repo-intake.md returns no matches (exit 1).,Directive and Text-only sections explicitly state .txt-only input and call for signals/flow/intricacies/targeted follow-up questions.,How to test/verify references only ./scripts/docs-list.ts and rg and includes the repo-intake.md listing check.
-<!-- AC:END -->
