@@ -1,9 +1,10 @@
 ---
 id: task-21
 title: Run full hub repo functionality smoke checks
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-01 21:03'
+updated_date: '2026-01-01 21:03'
 labels:
   - smoke
   - tooling
