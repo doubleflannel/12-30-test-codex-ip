@@ -13,11 +13,14 @@ This skill exists to provide a reliable, reusable web lookup tool that behaves c
 Run once before first use:
 
 ```bash
-cd ~/Projects/agent-scripts/skills/brave-search
+cd /home/vnkbr/.codex/skills/brave-search
 npm ci
 ```
 
 Needs env: `BRAVE_API_KEY`.
+If missing, `./search.js` exits with a missing key error.
+
+Alt install: if this repo is mirrored elsewhere, `cd <that>/skills/brave-search` before `npm ci`.
 
 ## Search
 
@@ -49,3 +52,11 @@ Content: (if --content flag used)
 --- Result 2 ---
 ...
 ```
+
+## How to run
+
+```bash
+./search.js "steipete" -n 1
+```
+
+Success looks like: a `--- Result 1 ---` block with a non-empty Title/Link.
