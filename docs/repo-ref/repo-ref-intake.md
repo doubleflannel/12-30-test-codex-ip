@@ -11,7 +11,7 @@ Please think long and hard.
 Please think long and hard.
 Please think long and hard.
 Use ONLY the .txt repo dump. Do not assume repo access or non-text inputs.
-Extract: signals, flow, intricacies, and targeted follow-up questions.
+Generate a Summary and CLI-First section, then extract: signals, flow, intricacies, and targeted follow-up questions. For each CLI-First bullet, include a super long analogy so non-programmers understand the point.
 
 ## Guardrails (do not ignore)
 Do not rewrite or paraphrase this prompt.
@@ -52,6 +52,8 @@ Expected: the heading is found; exit code 0.
 - Flow and intricacies (request lifecycle, background jobs, cross-cutting concerns)
 
 ## Output format (return to user)
+- Summary: 4-6 bullets covering signals, hard parts, system design hotspots, unknowns, and key follow-ups.
+- CLI-First: 5 bullets; each bullet includes Core, Needed, What, and a super long Analogy; map to processes that can be made CLI-first.
 - Signals: runtime, entrypoints, commands, layers, data stores, integrations.
 - Flow: request/data path end-to-end, including background work.
 - Intricacies: tight couplings, risky areas, non-obvious behavior.
