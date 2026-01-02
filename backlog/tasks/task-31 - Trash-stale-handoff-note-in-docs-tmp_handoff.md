@@ -4,7 +4,7 @@ title: Trash stale handoff note in docs/tmp_handoff
 status: Done
 assignee: []
 created_date: '2026-01-02 12:29'
-updated_date: '2026-01-02 12:29'
+updated_date: '2026-01-02 12:30'
 labels: []
 dependencies: []
 ---
@@ -21,11 +21,13 @@ How to test: run `ls docs/tmp_handoff` or `./scripts/docs-list.ts` to confirm th
 <!-- AC:BEGIN -->
 - [x] #1 `./scripts/trash-win docs/tmp_handoff/handoff-01-02-07.md` exits 0 and the file lands in Trash (recoverable).
 - [x] #2 `ls docs/tmp_handoff` does not list `handoff-01-02-07.md` and `./scripts/docs-list.ts` no longer reports that path.
-- [x] #3 `git status -s` shows only the deletion of `docs/tmp_handoff/handoff-01-02-07.md` related to this task.
+- [x] #3 `git status -s` shows a deletion entry for `docs/tmp_handoff/handoff-01-02-07.md` (other unrelated changes may exist).
 <!-- AC:END -->
 
 ## Implementation Notes
 
 <!-- SECTION:NOTES:BEGIN -->
 Used `./scripts/trash-win` with absolute /mnt/c path; `ls docs/tmp_handoff` confirms file gone.
+
+Repo already dirty; verified deletion entry in `git status -s` alongside existing changes.
 <!-- SECTION:NOTES:END -->
