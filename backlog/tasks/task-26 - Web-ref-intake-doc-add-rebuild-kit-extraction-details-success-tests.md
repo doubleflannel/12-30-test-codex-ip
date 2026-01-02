@@ -1,9 +1,10 @@
 ---
 id: task-26
 title: 'Web ref intake doc: add rebuild kit extraction details + success tests'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 11:26'
+updated_date: '2026-01-02 11:29'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,15 @@ How to test: run `rg -n "styles/|assets.json|tokens.json|Folder layout|Success t
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `docs/web-ref/web-ref-intake.md` contains a folder layout block that includes `dom.html`, `page-dump.json`, `styles/inline.css`, `assets.json`, `tokens.json`, and `screenshots/desktop/full.png`.
-- [ ] #2 The doc includes a JSON schema snippet for `assets.json` with top-level keys `images`, `fonts`, `video`, `audio`, `scripts`, and `links`.
-- [ ] #3 The doc includes a `Success tests` section that lists at least five checks, including `dom.html` size, `screenshots/desktop/full.png` size, and `styles/linked-*.css` count when `cssLinks` exist.
+- [x] #1 `docs/web-ref/web-ref-intake.md` contains a folder layout block that includes `dom.html`, `page-dump.json`, `styles/inline.css`, `assets.json`, `tokens.json`, and `screenshots/desktop/full.png`.
+- [x] #2 The doc includes a JSON schema snippet for `assets.json` with top-level keys `images`, `fonts`, `video`, `audio`, `scripts`, and `links`.
+- [x] #3 The doc includes a `Success tests` section that lists at least five checks, including `dom.html` size, `screenshots/desktop/full.png` size, and `styles/linked-*.css` count when `cssLinks` exist.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: added Rebuild Kit extraction details (dom/styles/assets/tokens), folder layout tree, and Success tests section to docs/web-ref/web-ref-intake.md.
+
+Checks: rg -n "styles/|assets.json|tokens.json|Folder layout|Success tests" docs/web-ref/web-ref-intake.md; ./scripts/docs-list.ts.
+<!-- SECTION:NOTES:END -->
