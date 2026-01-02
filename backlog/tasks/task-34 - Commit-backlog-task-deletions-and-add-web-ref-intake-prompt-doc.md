@@ -1,9 +1,10 @@
 ---
 id: task-34
 title: Commit backlog task deletions and add web-ref intake prompt doc
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 13:08'
+updated_date: '2026-01-02 13:08'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,13 @@ Then add `docs/web-ref/web-ref-intake-prompt.md` to the repo as a separate docs 
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Commit backlog task deletions only (the six `backlog/tasks/task-11/14/15/16/20` paths) with `./scripts/committer`.
-- [ ] #2 Add and commit `docs/web-ref/web-ref-intake-prompt.md` as its own docs commit using `./scripts/committer`.
-- [ ] #3 `git status -s` shows no unintended staged files; remaining untracked items are just the `skills/*` directories (pending decision).
+- [x] #1 Commit backlog task deletions only (the six `backlog/tasks/task-11/14/15/16/20` paths) with `./scripts/committer`.
+- [x] #2 Add and commit `docs/web-ref/web-ref-intake-prompt.md` as its own docs commit using `./scripts/committer`.
+- [x] #3 `git status -s` shows no unintended staged files; remaining untracked items are just the `skills/*` directories (pending decision).
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Committed: `chore: remove backlog tasks` and `docs: add web ref intake prompt`. Remaining untracked: `skills/ask-details/`, `skills/screenshot-use/`.
+<!-- SECTION:NOTES:END -->
