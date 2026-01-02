@@ -1,10 +1,9 @@
 #!/usr/bin/env tsx
-// Emit a markdown changelog entry with beginner-friendly analogies and append it to CHANGELOG.md in the project root.
+// Emit a markdown changelog entry with beginner-friendly analogies and append it to CHANGELOG.md in the git root.
 
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 
 type Entry = { status: 'A' | 'M' | 'D' | 'R'; path: string; from?: string };
 type Group = {
@@ -12,19 +11,29 @@ type Group = {
   counts: Record<Entry['status'], number>;
 };
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
-const ROOT = path.join(HERE, '..');
-const CHANGELOG_PATH = path.join(ROOT, 'CHANGELOG.md');
 const BASE_MARKER_RE = /change-logger-base:\s*([0-9a-f]{7,40})/i;
+let gitCwd = process.cwd();
+let changelogPath = path.join(gitCwd, 'CHANGELOG.md');
 
-function runGit(args: string[]): string {
+function runGit(args: string[], cwd = gitCwd): string {
   try {
-    return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+    return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], cwd }).trim();
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.error(`git command failed: git ${args.join(' ')}\n${message}`);
     process.exit(1);
   }
+}
+
+function resolveRoot(rootOverride?: string): string {
+  const candidate = rootOverride ? path.resolve(rootOverride) : process.cwd();
+  const root = runGit(['rev-parse', '--show-toplevel'], candidate);
+  const gitMeta = path.join(root, '.git');
+  if (!fs.existsSync(gitMeta)) {
+    console.error(`Resolved git root missing .git: ${root}`);
+    process.exit(1);
+  }
+  return root;
 }
 
 function parseNameStatus(output: string): Entry[] {
@@ -93,10 +102,10 @@ function mergeEntries(primary: Entry[], secondary: Entry[]): Entry[] {
 }
 
 function readBaseCommit(): string | null {
-  if (!fs.existsSync(CHANGELOG_PATH)) {
+  if (!fs.existsSync(changelogPath)) {
     return null;
   }
-  const existing = fs.readFileSync(CHANGELOG_PATH, 'utf8');
+  const existing = fs.readFileSync(changelogPath, 'utf8');
   const match = existing.match(BASE_MARKER_RE);
   return match?.[1] ?? null;
 }
@@ -176,32 +185,33 @@ function buildSection(entries: Entry[], title?: string, baseCommit?: string): st
 function upsertChangelog(section: string): void {
   const header = `Timeline of project changes with beginner-friendly analogies for quick scanning.\n\n# Changelog\n\n`;
 
-  if (!fs.existsSync(CHANGELOG_PATH)) {
-    fs.writeFileSync(CHANGELOG_PATH, header + section, { encoding: 'utf8' });
+  if (!fs.existsSync(changelogPath)) {
+    fs.writeFileSync(changelogPath, header + section, { encoding: 'utf8' });
     console.log(`Created CHANGELOG.md with new entry.`);
     return;
   }
 
-  const existing = fs.readFileSync(CHANGELOG_PATH, 'utf8');
+  const existing = fs.readFileSync(changelogPath, 'utf8');
   const marker = '# Changelog';
   const idx = existing.indexOf(marker);
   if (idx === -1) {
     const combined = header + section + existing;
-    fs.writeFileSync(CHANGELOG_PATH, combined, { encoding: 'utf8' });
+    fs.writeFileSync(changelogPath, combined, { encoding: 'utf8' });
     console.log(`Updated CHANGELOG.md (inserted header and new entry).`);
     return;
   }
 
   const insertPos = existing.indexOf('\n', idx + marker.length) + 1 || existing.length;
   const updated = existing.slice(0, insertPos) + section + existing.slice(insertPos);
-  fs.writeFileSync(CHANGELOG_PATH, updated, { encoding: 'utf8' });
+  fs.writeFileSync(changelogPath, updated, { encoding: 'utf8' });
   console.log(`Updated CHANGELOG.md with new entry.`);
 }
 
 function help(): void {
-  console.log(`Usage: change-logger [--staged] [--range <rev>] [--title <text>] [--help]
+  console.log(`Usage: change-logger [--root <path>] [--staged] [--range <rev>] [--title <text>] [--help]
 
 Options:
+  --root <path>  Override repo root (defaults to git root from cwd).
   --staged        Include staged changes only (default: staged + unstaged).
   --range <rev>   git diff range (e.g., main..HEAD). Overrides --staged.
   --title <text>  Title for the changelog section (default: working tree updates).
@@ -212,6 +222,7 @@ Notes:
   CHANGELOG.md and include commits since that marker, plus current working tree
   changes. Each run records the latest HEAD commit as the new marker.
   Output is grouped by the first two path segments (e.g., skills/brave-search).
+  CHANGELOG.md is always written at the resolved repo root.
 `);
 }
 
@@ -220,11 +231,14 @@ function main(): void {
   let stagedOnly = false;
   let range: string | null = null;
   let title: string | undefined;
+  let rootOverride: string | undefined;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--staged') {
       stagedOnly = true;
+    } else if (arg === '--root') {
+      rootOverride = args[++i] ?? undefined;
     } else if (arg === '--range') {
       range = args[++i] ?? null;
     } else if (arg === '--title') {
@@ -234,6 +248,11 @@ function main(): void {
       return;
     }
   }
+
+  const root = resolveRoot(rootOverride);
+  gitCwd = root;
+  changelogPath = path.join(root, 'CHANGELOG.md');
+  console.log(`Using repo root: ${root}`);
 
   let includeWorkingTree = true;
   let effectiveRange = range;
