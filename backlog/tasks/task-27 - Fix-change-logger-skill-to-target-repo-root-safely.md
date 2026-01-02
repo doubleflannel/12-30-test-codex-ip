@@ -1,9 +1,10 @@
 ---
 id: task-27
 title: Fix change-logger skill to target repo root safely
-status: To Do
+status: In Progress
 assignee: []
 created_date: '2026-01-02 12:01'
+updated_date: '2026-01-02 12:05'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,17 @@ Adjust the skill docs to state the safe entrypoint and the new root resolution b
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Running `./scripts/change-logger.ts --help` documents root resolution or `--root`, and the script refuses to write if the resolved root is not a git repo.
+- [x] #1 Running `./scripts/change-logger.ts --help` documents root resolution or `--root`, and the script refuses to write if the resolved root is not a git repo.
 - [ ] #2 When run from a different repo cwd, the script writes `CHANGELOG.md` inside that repo’s git root (not the hub repo).
 - [ ] #3 When run from the hub repo cwd, the script writes `CHANGELOG.md` inside the hub repo root and logs the resolved root path.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: scripts/change-logger.ts now resolves repo root via git rev-parse (cwd) with optional --root; logs resolved root; CHANGELOG.md path uses resolved root. Skill doc updated with --root usage + root resolution note.
+
+Checks: ./scripts/change-logger.ts --help.
+
+Follow-up: run script from another repo cwd and from hub repo to confirm it writes to the correct CHANGELOG.md and logs root.
+<!-- SECTION:NOTES:END -->
