@@ -1,9 +1,10 @@
 ---
 id: task-25
 title: 'Web ref intake doc: add screenshot plan section + inputs/defaults'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 11:26'
+updated_date: '2026-01-02 11:28'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,15 @@ How to test: run `rg -n "Screenshot plan|--viewports|above-the-fold.png|section-
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `docs/web-ref/web-ref-intake.md` includes a section heading `Screenshot plan (PNG)` followed by a list of required inputs that mention `--urls`, `--viewports`, and `--shots`.
-- [ ] #2 The doc lists default screenshot filenames including `full.png`, `above-the-fold.png`, `nav.png`, and `footer.png`, plus section shots named `section-01.png`.
-- [ ] #3 The doc includes a component shots subsection that names output paths under `components/` and mentions `--states=on` for hover/focus/dark mode.
+- [x] #1 `docs/web-ref/web-ref-intake.md` includes a section heading `Screenshot plan (PNG)` followed by a list of required inputs that mention `--urls`, `--viewports`, and `--shots`.
+- [x] #2 The doc lists default screenshot filenames including `full.png`, `above-the-fold.png`, `nav.png`, and `footer.png`, plus section shots named `section-01.png`.
+- [x] #3 The doc includes a component shots subsection that names output paths under `components/` and mentions `--states=on` for hover/focus/dark mode.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: added Screenshot plan (PNG) section with inputs, defaults, section/component shots, and --states=on behavior in docs/web-ref/web-ref-intake.md.
+
+Checks: rg -n "Screenshot plan|--viewports|above-the-fold.png|section-01.png|components/" docs/web-ref/web-ref-intake.md.
+<!-- SECTION:NOTES:END -->
