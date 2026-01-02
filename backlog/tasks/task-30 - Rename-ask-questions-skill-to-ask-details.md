@@ -1,9 +1,10 @@
 ---
 id: task-30
 title: Rename ask-questions skill to ask-details
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 12:20'
+updated_date: '2026-01-02 12:22'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,7 @@ After the rename, ensure the local skill installation under `~/.codex/skills` is
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `skills/ask-details/SKILL.md` exists and the frontmatter name is exactly `ask-details` while the body remains otherwise unchanged.
-- [ ] #2 `rg -n "ask-questions-if-underspecified" skills docs` returns no matches after the rename.
-- [ ] #3 `~/.codex/skills/ask-details/SKILL.md` exists and `rg -n "name: ask-details" ~/.codex/skills/ask-details/SKILL.md` exits 0.
+- [x] #1 `skills/ask-details/SKILL.md` exists and the frontmatter name is exactly `ask-details` while the body remains otherwise unchanged.
+- [x] #2 `rg -n "ask-questions-if-underspecified" skills docs` returns no matches after the rename.
+- [x] #3 `~/.codex/skills/ask-details/SKILL.md` exists and `rg -n "name: ask-details" ~/.codex/skills/ask-details/SKILL.md` exits 0.
 <!-- AC:END -->
