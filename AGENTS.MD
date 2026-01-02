@@ -32,11 +32,6 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens; short analogy;
 ## Architecture
 - TypeScript: use repo PM; run `./scripts/docs-list.ts`; keep files small; follow existing patterns.
 
-## Screenshots ("use a screenshot")
-- Pick newest PNG in `/mnt/c/Users/vnkbr/Downloads`.
-- Verify it’s the right UI (ignore filename).
-- Replace asset; keep dimensions; commit; run gate; verify CI.
-
 ## Docs
 - Start: run docs list (`./scripts/docs-list.ts`); open docs before coding.
 - Follow links until domain makes sense; honor `Read when` hints.
@@ -53,6 +48,7 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens; short analogy;
 ## Flow & Runtime
 - Use repo’s package manager/runtime; no swaps w/o approval.
 - Use Codex background for long jobs; tmux only for interactive/persistent (debugger/server).
+- If npm install stalls >120s with no output, stop and ask user to run it manually (like a stuck elevator).
 
 ## Build / Test
 - Before handoff: run full gate (lint/typecheck/tests/docs).
@@ -120,6 +116,10 @@ Work style: telegraph; noun-phrases ok; drop grammar; min tokens; short analogy;
 ### skills/markdown-converter
 - Convert many file types into Markdown for analysis.
 - Description: a translator that turns many file types into Markdown.
+
+### skills/screenshot-use
+- Screenshot workflow (pick newest PNG, verify UI, replace asset, run gate/CI).
+- Description: a checklist so screenshot updates are consistent and verifiable.
 
 ### skills/oracle
 - Bundle prompt+files for 2nd model. Use when stuck/buggy/review. Default to API first; use gpt-5.2-pro.
