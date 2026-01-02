@@ -1,9 +1,10 @@
 ---
 id: task-28
 title: Add ask-questions skill for clarifying underspecified requests
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 12:09'
+updated_date: '2026-01-02 12:10'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,15 @@ How to test: run `rg -n "name: ask-questions-if-underspecified|Do not use automa
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `skills/ask-questions-if-underspecified/SKILL.md` exists with the exact frontmatter name `ask-questions-if-underspecified` and description line from the request.
-- [ ] #2 The skill body includes sections `Goal`, `Workflow`, `Question templates`, and `Anti-patterns` with the provided wording preserved.
-- [ ] #3 `rg -n "Do not use automatically" skills/ask-questions-if-underspecified/SKILL.md` returns a match and exit code 0.
+- [x] #1 `skills/ask-questions-if-underspecified/SKILL.md` exists with the exact frontmatter name `ask-questions-if-underspecified` and description line from the request.
+- [x] #2 The skill body includes sections `Goal`, `Workflow`, `Question templates`, and `Anti-patterns` with the provided wording preserved.
+- [x] #3 `rg -n "Do not use automatically" skills/ask-questions-if-underspecified/SKILL.md` returns a match and exit code 0.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: created skills/ask-questions-if-underspecified/SKILL.md with provided frontmatter/body; init_skill.py not found, created manually.
+
+Checks: rg -n "name: ask-questions-if-underspecified|Do not use automatically" skills/ask-questions-if-underspecified/SKILL.md; ./scripts/docs-list.ts.
+<!-- SECTION:NOTES:END -->
