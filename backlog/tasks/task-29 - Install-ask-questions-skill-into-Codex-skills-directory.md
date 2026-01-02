@@ -1,9 +1,10 @@
 ---
 id: task-29
 title: Install ask-questions skill into Codex skills directory
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 12:12'
+updated_date: '2026-01-02 12:13'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,17 @@ How to test: `rg -n "name: ask-questions-if-underspecified" ~/.codex/skills/ask-
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 `~/.codex/skills/ask-questions-if-underspecified/SKILL.md` exists and includes the correct name frontmatter.
-- [ ] #2 No existing skill directory was overwritten without explicit approval; if it existed, installation paused and asked.
-- [ ] #3 User is told to restart Codex to pick up the new skill.
+- [x] #1 `~/.codex/skills/ask-questions-if-underspecified/SKILL.md` exists and includes the correct name frontmatter.
+- [x] #2 No existing skill directory was overwritten without explicit approval; if it existed, installation paused and asked.
+- [x] #3 User is told to restart Codex to pick up the new skill.
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Updates: copied skills/ask-questions-if-underspecified to ~/.codex/skills/ask-questions-if-underspecified after confirming dest missing.
+
+Checks: rg -n "name: ask-questions-if-underspecified" ~/.codex/skills/ask-questions-if-underspecified/SKILL.md.
+
+Reminder: restart Codex to pick up new skill.
+<!-- SECTION:NOTES:END -->
