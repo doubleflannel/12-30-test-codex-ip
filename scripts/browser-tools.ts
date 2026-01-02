@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S npx ts-node --project tsconfig.scripts.json
 
 /**
  * Minimal Chrome DevTools helpers inspired by Mario Zechner's
@@ -543,7 +543,8 @@ program
         if (allowedTypes && !allowedTypes.has('pageerror') && !allowedTypes.has('error')) {
           return;
         }
-        console.log(formatMessage('pageerror', error.message));
+        const message = error instanceof Error ? error.message : String(error);
+        console.log(formatMessage('pageerror', message));
       });
 
       if (follow) {

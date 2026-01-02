@@ -9,6 +9,15 @@ usage() {
   exit 2
 }
 
+show_help() {
+  printf 'Usage: %s [--force] "commit message" "file" ["file" ...]\n' "$(basename "$0")"
+  exit 0
+}
+
+if [ "${1:-}" = "--help" ] || [ "${1:-}" = "-h" ]; then
+  show_help
+fi
+
 if [ "$#" -lt 2 ]; then
   usage
 fi
