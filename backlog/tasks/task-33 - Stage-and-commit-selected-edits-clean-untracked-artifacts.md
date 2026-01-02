@@ -1,9 +1,10 @@
 ---
 id: task-33
 title: Stage and commit selected edits; clean untracked artifacts
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-01-02 13:02'
+updated_date: '2026-01-02 13:05'
 labels: []
 dependencies: []
 ---
@@ -18,7 +19,13 @@ How to test: run `git status -s` before and after to confirm only the intended f
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Create three commits: one for `AGENTS.MD`; one for `docs/web-ref` changes (including the move + deletion); one for `scripts/browser-tools.ts`, `scripts/committer`, `scripts/trash-win`.
-- [ ] #2 Remove `.next/` and `docs/web-ref/gitingest.com/` and `docs/web-ref/okm-lp-demo.zeabur.app/` via `./scripts/trash-win` with absolute /mnt paths; keep `docs/web-ref/web-ref-intake-prompt.md`.
-- [ ] #3 `git status -s` shows no unintended staged files; only remaining untracked items are those explicitly kept or pending decisions (e.g., `skills/ask-details/`, `skills/screenshot-use/`).
+- [x] #1 Create three commits: one for `AGENTS.MD`; one for `docs/web-ref` changes (including the move + deletion); one for `scripts/browser-tools.ts`, `scripts/committer`, `scripts/trash-win`.
+- [x] #2 Remove `.next/` and `docs/web-ref/gitingest.com/` and `docs/web-ref/okm-lp-demo.zeabur.app/` via `./scripts/trash-win` with absolute /mnt paths; keep `docs/web-ref/web-ref-intake-prompt.md`.
+- [x] #3 `git status -s` shows no unintended staged files; only remaining untracked items are those explicitly kept or pending decisions (e.g., `skills/ask-details/`, `skills/screenshot-use/`).
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Committed: `docs: update agent guidance`, `docs: update web ref intake kit`, `chore: harden helper scripts`. Removed untracked `.next/`, `docs/web-ref/gitingest.com/`, `docs/web-ref/okm-lp-demo.zeabur.app/` via `./scripts/trash-win` with absolute /mnt paths. Remaining untracked: `docs/web-ref/web-ref-intake-prompt.md`, `skills/ask-details/`, `skills/screenshot-use/`. Backlog task deletions still unstaged as intended.
+<!-- SECTION:NOTES:END -->
