@@ -4,27 +4,40 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 
-const DEFAULT_OUT = 'page-dump.json';
+const DEFAULT_OUT_FILE = 'page-dump.json';
 const DEFAULT_MAX_NODES = 5;
 
 const usage = () => {
   console.log(`Usage: web-ref-intake <url> [options]
 
 Options:
-  --out <path>         Output JSON path (default: ${DEFAULT_OUT})
+  --out <filename>     Output JSON filename (default: ${DEFAULT_OUT_FILE})
   --selectors <list>   Comma-separated selectors to sample computed styles
   --max-nodes <n>      Cap samples per selector (default: ${DEFAULT_MAX_NODES})
   -h, --help           Show this help
 
 Example:
-  web-ref-intake https://example.com --out tmp/page-dump.json --selectors "h1,.hero" --max-nodes 3`);
+  web-ref-intake https://example.com --selectors "h1,.hero" --max-nodes 3
+
+Output:
+  docs/web-ref/<url>/page-dump.json`);
 };
 
 type CliArgs = {
   url: string;
-  outPath: string;
+  outFile: string;
   selectors: string[];
   maxNodes: number;
+};
+
+const slugFromUrl = (input: string): string => {
+  const parsed = new URL(input);
+  const raw = `${parsed.hostname}${parsed.pathname}${parsed.search}${parsed.hash}`;
+  const slug = raw
+    .toLowerCase()
+    .replace(/[^a-z0-9._-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+  return slug || parsed.hostname;
 };
 
 const fail = (message: string): never => {
@@ -35,7 +48,7 @@ const fail = (message: string): never => {
 
 const parseArgs = (argv: string[]): CliArgs => {
   let url: string | null = null;
-  let outPath = DEFAULT_OUT;
+  let outFile = DEFAULT_OUT_FILE;
   let selectors: string[] = [];
   let maxNodes = DEFAULT_MAX_NODES;
 
@@ -54,9 +67,12 @@ const parseArgs = (argv: string[]): CliArgs => {
     if (arg === '--out') {
       const value = argv[i + 1];
       if (!value) {
-        fail('--out requires a path');
+        fail('--out requires a filename');
       }
-      outPath = value;
+      if (value.includes('/') || value.includes('\\')) {
+        fail('--out only accepts a filename (no directories)');
+      }
+      outFile = value;
       i += 1;
       continue;
     }
@@ -95,11 +111,11 @@ const parseArgs = (argv: string[]): CliArgs => {
     fail('Missing <url>');
   }
 
-  return { url, outPath, selectors, maxNodes };
+  return { url, outFile, selectors, maxNodes };
 };
 
 const main = async () => {
-  const { url, outPath, selectors, maxNodes } = parseArgs(process.argv.slice(2));
+  const { url, outFile, selectors, maxNodes } = parseArgs(process.argv.slice(2));
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
@@ -109,8 +125,10 @@ const main = async () => {
     const data = await page.evaluate(
       ({ selectors: selectorList, maxNodes: sampleCap }) => {
         const html = document.documentElement.outerHTML;
-        const inlineStyles = Array.from(document.querySelectorAll('style')).map((style) => style.textContent || '');
-        const cssLinks = Array.from(document.querySelectorAll('link[rel="stylesheet"]'))
+        const inlineStyles = Array.from(document.querySelectorAll<HTMLStyleElement>('style')).map(
+          (style) => style.textContent || '',
+        );
+        const cssLinks = Array.from(document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]'))
           .map((link) => link.href)
           .filter(Boolean);
 
@@ -157,8 +175,9 @@ const main = async () => {
       { selectors, maxNodes },
     );
 
-    const resolvedOut = path.resolve(outPath);
-    await mkdir(path.dirname(resolvedOut), { recursive: true });
+    const outDir = path.resolve('docs', 'web-ref', slugFromUrl(url));
+    const resolvedOut = path.join(outDir, outFile);
+    await mkdir(outDir, { recursive: true });
     await writeFile(resolvedOut, `${JSON.stringify(data, null, 2)}\n`);
     console.log(`Wrote ${resolvedOut}`);
   } finally {

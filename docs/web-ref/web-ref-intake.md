@@ -42,11 +42,12 @@ console.log("Wrote page-dump.json");
 
 ## CLI entrypoint
 ```bash
-npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --out tmp/page-dump.json
+npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com
 ```
 
 ## Options
-- `--out <path>`: output JSON path (default: `page-dump.json`).
+- `--out <filename>`: output JSON filename (default: `page-dump.json`).
+- Output is always written under `docs/web-ref/<url>/` (URL is sanitized for filesystem).
 - `--selectors <css,selectors>`: comma-separated selectors to sample computed styles.
 - `--max-nodes <n>`: cap samples per selector (default: 5).
 
@@ -58,15 +59,15 @@ npx playwright install chromium
 ```
 2) Run the intake:
 ```bash
-npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --out tmp/page-dump.json
+npx ts-node --project tsconfig.scripts.json scripts/web-ref-intake.ts https://example.com --out page-dump.json
 ```
 
 ## Success looks like
-- `tmp/page-dump.json` exists and includes `url`, `html`, `cssLinks`, `inlineStyles`.
+- `docs/web-ref/<url>/page-dump.json` exists and includes `url`, `html`, `cssLinks`, `inlineStyles`.
 - When `--selectors` is used, `computedStyles` is present with match counts and samples.
 
 ## Quick check
 ```bash
-rg -n "\"url\"|\"html\"|\"cssLinks\"|\"inlineStyles\"" tmp/page-dump.json
+rg -n "\"url\"|\"html\"|\"cssLinks\"|\"inlineStyles\"" docs/web-ref/<url>/page-dump.json
 ```
 Expected: matches for each key; exit 0.
